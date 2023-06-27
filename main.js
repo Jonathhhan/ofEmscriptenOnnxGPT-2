@@ -15,7 +15,7 @@ onnxInference = async function(textInput) {
 	while (n < 256 && iterate) {
 		n++;
 		// setTimeout(async function(){
-			var chars = '].!;?)""';
+			var chars = '].!;?)"`';
 			if (chars.indexOf(str.charAt(str.length - 1)) == 1) {
 				Module.onnx("inference", str);
 			}
