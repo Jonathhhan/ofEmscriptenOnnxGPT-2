@@ -16,7 +16,7 @@ async function gptLoop(textInput, id) {
 	Module.onnx("inference", textInput);
 	var generatedToken = 0;
 	while (generatedToken < 256) {
-		await delay(1);
+		await delay(0);
 		if (id !== calls) break;
 		generatedToken++;
 		var tokens = GPTTokenizer_p50k_edit.encode(textInput);
@@ -36,8 +36,9 @@ async function gptLoop(textInput, id) {
 		newWord = newWord.replace(/(\r\n|\n|\r)/gm, "");
 		if (newWord != "<|endoftext|>") {
 			textInput = textInput + newWord;
-			var chars = '].!;?)"`';
-			if (chars.indexOf(textInput.charAt(textInput.length - 1)) == 1) {
+			var chars = '].!;?)`';
+			var lastChar = textInput.charAt(textInput.length - 1);
+			if (chars.indexOf(lastChar) == 1 || lastChar == "\"") {
 				Module.onnx("inference", textInput);
 			}
 			console.log("Loop number:", calls, "Token number:", generatedToken, "Generated text:", textInput);
