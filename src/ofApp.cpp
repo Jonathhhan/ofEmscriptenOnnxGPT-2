@@ -42,7 +42,6 @@ void ofApp::setup(){
 	paragraph3.setAlignment(ofxParagraph::ALIGN_LEFT);
 	paragraph3.setFont("data/font/mono.ttf", 12);
 	onnxModelIsLoaded = false;
-	//ofSetBackgroundColor(100, 100, 100);
 	onnxModelStatus = "Onnx model loading.";
 	EM_ASM(
 		startOnnxSession();
