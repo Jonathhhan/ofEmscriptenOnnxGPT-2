@@ -26,12 +26,11 @@ async function gptLoop(textInput, id) {
 		if (id !== calls) break;
 		generatedToken++;
 		bigInt64Array = bigInt64Array.slice(Math.max(bigInt64Array.length - 50, 0))
-		const tensorA = new ort.Tensor("int64", bigInt64Array, [1, 1, bigInt64Array.length]);
-		const feeds = { input1: tensorA };
+		const inputTensor = new ort.Tensor("int64", bigInt64Array, [1, 1, bigInt64Array.length]);
+		const feeds = { input1: inputTensor };
 		const results = await onnxSession.run(feeds);
-		const dataC = results["output1"].data;
-		const dataA = dataC.slice(50257 * (bigInt64Array.length - 1), 50257 + 50257 * (bigInt64Array.length - 1));
-		const entries = Object.entries(dataA);
+		const outputData = results["output1"].data.slice(50257 * (bigInt64Array.length - 1), 50257 + 50257 * (bigInt64Array.length - 1));
+		const entries = Object.entries(outputData);
 		const sorted = entries.sort((a, b) => b[1] - a[1]);
 		const newToken = parseInt(sorted[randomWithProbability()][0]);
 		bigInt64Array.push(BigInt(newToken));
