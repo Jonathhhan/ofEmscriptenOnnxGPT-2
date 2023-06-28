@@ -24,25 +24,25 @@ void ofApp::setup(){
 	textInput = "The meaning of life";
 	paragraph2.setText("Start sequence: " + textInput);
 	paragraph.setWidth(700);
-	paragraph.setPosition(50, 150);
+	paragraph.setPosition(50, 200);
 	paragraph.setColor(ofColor(250, 250, 250));
 	paragraph.setBorderPadding(30);
 	paragraph.setAlignment(ofxParagraph::ALIGN_LEFT);
-	paragraph.setFont("data/fonts/mono.ttf", 12);
+	paragraph.setFont("data/font/mono.ttf", 12);
 	paragraph2.setWidth(700);
 	paragraph2.setPosition(50, 50);
 	paragraph2.setColor(ofColor(250, 250, 250));
 	paragraph2.setBorderPadding(30);
 	paragraph2.setAlignment(ofxParagraph::ALIGN_LEFT);
-	paragraph2.setFont("data/fonts/mono.ttf", 12);
+	paragraph2.setFont("data/font/mono.ttf", 12);
 	paragraph3.setWidth(700);
-	paragraph3.setPosition(50, 750);
+	paragraph3.setPosition(50, 780);
 	paragraph3.setColor(ofColor(250, 250, 250));
 	paragraph3.setBorderPadding(30);
 	paragraph3.setAlignment(ofxParagraph::ALIGN_LEFT);
-	paragraph3.setFont("data/fonts/mono.ttf", 12);
+	paragraph3.setFont("data/font/mono.ttf", 12);
 	onnxModelIsLoaded = false;
-	ofSetBackgroundColor(100, 100, 100);
+	//ofSetBackgroundColor(100, 100, 100);
 	onnxModelStatus = "Onnx model loading.";
 	EM_ASM(
 		startOnnxSession();
@@ -57,6 +57,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	ofSetColor(0);
+	ofDrawRectangle(20, 150, 760, 600);
 	paragraph.draw();
 	paragraph2.draw();
 	paragraph3.draw();
@@ -87,6 +89,7 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y){
+
 }
 
 //--------------------------------------------------------------
